@@ -50,3 +50,70 @@ function showNextSlide() {
 
 // Start auto-sliding
 setInterval(showNextSlide, slideInterval);
+
+// Card Animation
+document.addEventListener("DOMContentLoaded", () => {
+  const eventCards = document.querySelectorAll(".event-card");
+  const options = {
+    threshold: 0.4, // Trigger animation when 40% of the element is visible
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Add animation class to the card
+        entry.target.classList.add("animate");
+        observer.unobserve(entry.target); // Stop observing after animation is triggered
+      }
+    });
+  }, options);
+
+  eventCards.forEach(card => {
+    observer.observe(card); // Start observing each card
+  });
+});
+
+
+// Gallery item animation js
+document.addEventListener("DOMContentLoaded", () => {
+  const galleryItems = document.querySelectorAll(".gallery-item");
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("scroll-animate");
+        observer.unobserve(entry.target); // Stop observing after animation triggers
+      }
+    });
+  }, { threshold: 0.3 }); // Trigger animation when 30% of the element is visible
+
+  galleryItems.forEach((item, index) => {
+    item.style.setProperty("--delay", index); // Add staggered delay
+    observer.observe(item);
+  });
+});
+
+
+// Team Section animation
+document.addEventListener("DOMContentLoaded", () => {
+  const teamCards = document.querySelectorAll(".team-card");
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("simple-fade-in");
+        observer.unobserve(entry.target); // Stop observing once animation is triggered
+      }
+    });
+  }, { threshold: 0.2 });
+
+  teamCards.forEach((card) => {
+    observer.observe(card);
+  });
+});
+
+
+
+
+
+
