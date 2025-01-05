@@ -1,3 +1,23 @@
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+
+// Toggle the "active" class on both the hamburger and nav-menu
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+});
+
+// Close the menu when any nav link is clicked
+document.querySelectorAll(".nav-links").forEach(link => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active"); // Corrected to navMenu
+  });
+});
+
+
+
+
 // JavaScript for Modal Functionality
 const galleryItems = document.querySelectorAll(".gallery-item");
 const modal = document.getElementById("modal");
